@@ -1,47 +1,54 @@
 'use strict';
 
-const users =  [
-    {
-        user: "estudiante",
-        password: "123456",
-        name: "Estudiante",
-        lastname: "Curso Calidad y Pruebas de Software",
-        emailname: "Curso, Calidad"
-    }, 
-    {
-        user: "jose1234",
-        password: "123456",
-        name: "Jose",
-        lastname: "V",
-        emailname: "V, Jose"
-    }, 
-    {
-        user: "carlos1234",
-        password: "123456",
-        name: "Carlos",
-        lastname: "Mora",
-        emailname: "Mora, Carlos"
-    }
-];
+var _ = require('underscore');
+let model = require('../models/AuthModel');
+var httpresponse = require('../util/httpResponse')
+var endpointresponse = require('../util/endpointResponse')
 
 exports.authUser = function(req, res) {
+    let result={};
+    let httpCode=0;
     if (req.body.username === undefined || req.body === null || req.body.length === 0 || req.body === ''){
-        res.status(404).send({ success: 'false', message: 'Must provide the credentials for loggin.' });
+        httpCode=httpresponse.BAD_REQUEST;
+        result = {
+            data: null,
+            responseCode: endpointresponse.MISSING_PARAMETERS,
+            message: 'Must provide the credentials for loggin.'
+        };
         return;
     }
 
-    let user = users.filter(item => item.user === req.body.username && item.password === req.body.password);
+    let user = model.auth_user(req.body.username, req.body.password);
     if (user.length === 0){
-        res.status(404).send({ success: 'false', message: 'The user/password does not match with the right credentials.' });
-        return;
+        httpCode=httpresponse.BAD_REQUEST;
+        result = {
+            data: null,
+            responseCode: endpointresponse.INFO_NOT_FOUND,
+            message: 'The user/password does not match with the right credentials or username is inactive.'
+        };
+    }else{
+        let data = {
+            user: user[0].username,
+            name: user[0].name,
+            lastname: user[0].lastname,
+            emailname: user[0].emailname
+        };
+        result = {
+            data: data,
+            responseCode: endpointresponse.INFO_FOUND,
+            message: 'Action executed sucessfully.'
+        };
+        httpCode=httpresponse.OK;
     }
+    res.status(httpCode).send(result);
+};
 
-    let loggedUser = {
-        user: user[0].user,
-        password: "******",
-        name: user[0].name,
-        lastname: user[0].lastname,
-        emailname: user[0].emailname
+exports.getUsers = function(req, res){
+    let data = model.get_users();
+    let result = {
+        data: data,
+        responseCode: endpointresponse.SUCESSFUL,
+        message: 'Action executed sucessfully.'
     };
-    res.status(200).send(loggedUser);
+    res.status(httpresponse.OK).send(result);
 };

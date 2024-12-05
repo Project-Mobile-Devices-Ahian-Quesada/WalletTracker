@@ -1,10 +1,16 @@
 [
     {
+        "room": "CR1-200",
+        "capacity": 4,
+        "is_busy": false,
+        "user": "",
+        "date": null
+    },
+    {
         "room": "CR1-100",
         "capacity": 6,
         "is_busy": false,
         "user": "",
-        "start_date":"",
-        "end_date":""
+        "date": null
     }
 ]

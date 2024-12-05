@@ -1,0 +1,26 @@
+[
+    {
+        "username": "estudiante",
+        "password": "123456",
+        "name": "Estudiante",
+        "isActive": true,
+        "lastname": "Representante Estudiantil",
+        "emailname": "estudiante@est.utn.ac.cr"
+    }, 
+    {
+        "username": "mvillalta",
+        "password": "123456",
+        "name": "Jose",
+        "isActive": true,
+        "lastname": "Mora Villal†a",
+        "emailname": "mvillalta@est.utn.ac.cr"
+    }, 
+    {
+        "username": "maraya",
+        "password": "123456",
+        "name": "Carlos",
+        "isActive": false,
+        "lastname": "Mena Araya",
+        "emailname": "maraya@est.utn.ac.cr"
+    }
+]

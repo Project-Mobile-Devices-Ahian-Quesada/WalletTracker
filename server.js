@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-var routes = require('./routes/salasroutes'); //importing route
+var routes = require('./routes/roomsroutes'); //importing route
 routes(app); //register the route
 
 app.listen(port);

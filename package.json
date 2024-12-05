@@ -1,5 +1,5 @@
 {
-  "name": "apilistasalas",
+  "name": "roomsapi",
   "version": "1.0.0",
   "description": "api con funciones CRUD",
   "main": "index.js",
@@ -10,14 +10,15 @@
   "keywords": [
     "RESTFul",
     "API",
-    "Salas"
+    "Rooms"
   ],
   "author": "Ever Barahona",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "underscore": "^1.13.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
