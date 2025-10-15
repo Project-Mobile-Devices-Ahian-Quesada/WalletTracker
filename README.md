@@ -26,7 +26,7 @@ Requisitos Adicionales del Proyecto:
 Listas Personalizadas (Búsqueda): Función de búsqueda (Lupa) en la pantalla principal para filtrar el historial por descripción, monto o fecha.
 Imágenes/Video: Al registrar un gasto, el usuario puede adjuntar una imagen del comprobante o factura, usando la Cámara o seleccionándola desde la Galería.
 Diálogos: Implementación de diálogos de confirmación antes de eliminar una transacción o restablecer la billetera.
-Mockups (ADJUNTAS AL PROYECTO)
+Mockups [(imagen)](mockups/mockup.png)
 
 Tecnologías:
 Lenguaje Principal: Kotlin
