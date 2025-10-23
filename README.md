@@ -26,6 +26,7 @@ Requisitos Adicionales del Proyecto:
 Listas Personalizadas (Búsqueda): Función de búsqueda (Lupa) en la pantalla principal para filtrar el historial por descripción, monto o fecha.
 Imágenes/Video: Al registrar un gasto, el usuario puede adjuntar una imagen del comprobante o factura, usando la Cámara o seleccionándola desde la Galería.
 Diálogos: Implementación de diálogos de confirmación antes de eliminar una transacción o restablecer la billetera.
+
 Mockups [(imagen)](/mockup.png)
 
 Tecnologías:
@@ -41,5 +42,5 @@ MainActivity.kt: Pantalla principal y controlador del saldo.
 NewExpenseActivity.kt: Formulario para registrar nuevos gastos (CRUD: Create/Update).
 SettingsActivity.kt: Manejo de saldo inicial y opción de restablecimiento.
 ExpenseAdapter.kt: Adaptador del RecyclerView para el Historial de gastos.
-ExpenseDatabase.kt / ExpenseDao.kt: [Si usas Room] Definición de la base de datos y métodos de acceso.
+ExpenseDatabase.kt / ExpenseDao.kt: Definición de la base de datos y métodos de acceso.
 Expense.kt: Clase de datos (Modelo) de la transacción (monto, descripción, fecha, ruta de imagen).
