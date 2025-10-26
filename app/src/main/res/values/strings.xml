@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">SmartWallet</string>
+    <string name="app_name">Billetera Inteligente</string>
+    <string name="error_add_expense">Error al agregar el gasto.</string>
+    <string name="error_get_expenses">Error al obtener los gastos</string>
+    <string name="error_get_balance">Error al obtener el saldo</string>
+    <string name="error_setting_balance">Error al establecer el saldo inicial</string>
+    <string name="error_delete_expense">Error al eliminar el gasto</string>
+    <string name="error_reset_data">Error al restablecer los datos</string>
 </resources>
