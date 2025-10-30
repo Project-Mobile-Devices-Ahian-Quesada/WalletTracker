@@ -7,4 +7,12 @@
     <string name="error_setting_balance">Error setting balance</string>
     <string name="error_delete_expense">Error deteting expense</string>
     <string name="error_reset_data">Error reseting data</string>
+    <string name="btnaddexpense_main">Add Expense</string>
+    <string name="txtbalance_main">Balance</string>
+    <string name="btnaddexpense_agregagasto">Add Expense</string>
+    <string-array name="monedas_array">
+        <item>₡</item>
+        <item>$</item>
+        <item>€</item>
+    </string-array>
 </resources>
