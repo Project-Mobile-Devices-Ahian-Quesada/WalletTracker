@@ -6,4 +6,12 @@
     <string name="error_setting_balance">Error al establecer el saldo inicial</string>
     <string name="error_delete_expense">Error al eliminar el gasto</string>
     <string name="error_reset_data">Error al restablecer los datos</string>
+    <string name="btnaddexpense_main">Agregar Gasto</string>
+    <string name="txtbalance_main">Saldo actual</string>
+    <string name="btnaddexpense_agregagasto">Agregar Gasto</string>
+    <string-array name="monedas_array">
+        <item>₡</item>
+        <item>$</item>
+        <item>€</item>
+    </string-array>
 </resources>

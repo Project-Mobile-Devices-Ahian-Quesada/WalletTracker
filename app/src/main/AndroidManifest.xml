@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartWallet">
         <activity
+            android:name=".Configuration"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarGasto"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
