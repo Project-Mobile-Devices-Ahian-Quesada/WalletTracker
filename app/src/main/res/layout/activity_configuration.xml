@@ -1,77 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Configuration">
+    android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configuración"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
 
+    <LinearLayout
+        android:id="@+id/layoutContent"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp"
+        android:layout_marginTop="32dp">
 
-    <TableLayout
-        android:layout_width="396dp"
-        android:layout_height="230dp"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="117dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="88dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nuevo Saldo:" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/txtnuevosaldo_conf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text" />
-        </TableRow>
-
-        <TableRow
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="Nuevo Saldo Inicial:"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Borrar datos de la aplicación:" />
-
-            <Button
-                android:id="@+id/btnborradatos_conf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-        </TableRow>
-
-        <TableRow
+        <EditText
+            android:id="@+id/txtnuevosaldo_conf"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Ej: 10000" />
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Moneda:" />
+        <Button
+            android:id="@+id/btnCambiarSaldo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Saldo"
+            android:layout_marginTop="16dp" />
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/monedas_array" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Borrar todos los datos:"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp" />
 
-        </TableRow>
-    </TableLayout>
+        <Button
+            android:id="@+id/btnborradatos_conf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Borrar Todo"
+            android:backgroundTint="#FF0000"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moneda:"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/monedas_array" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

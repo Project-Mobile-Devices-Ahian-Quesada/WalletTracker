@@ -10,8 +10,14 @@ import java.util.Date
 import java.util.UUID
 
 class WalletController(private val context: Context) {
-
     private val dataManager: IDataManager = MemoryDataManager
+    private var currencySymbol: String = "₡" // Default
+
+    fun setCurrency(symbol: String) {
+        currencySymbol = symbol
+    }
+
+    fun getCurrency(): String = currencySymbol
 
     fun setInitialBalance(amount: Double) {
         try {
@@ -21,13 +27,9 @@ class WalletController(private val context: Context) {
         }
     }
 
-    fun getBalance(): Double {
-        return try {
-            dataManager.getBalance()
-        } catch (e: Exception) {
-            throw Exception(context.getString(R.string.error_get_balance))
-        }
-    }
+    fun getBalance(): Double = dataManager.getBalance()
+
+    fun getFormattedBalance(): String = "$currencySymbol ${getBalance()}"
 
     fun addExpense(description: String, amount: Double, imageUri: Uri? = null) {
         try {
@@ -44,13 +46,7 @@ class WalletController(private val context: Context) {
         }
     }
 
-    fun getExpenses() : List<Expense> {
-        try {
-            return dataManager.getAllExpenses()
-        } catch (e: Exception) {
-            throw Exception(context.getString(R.string.error_get_expenses))
-        }
-    }
+    fun getExpenses(): List<Expense> = dataManager.getAllExpenses()
 
     fun deleteExpenseById(id: String) {
         try {
@@ -63,6 +59,8 @@ class WalletController(private val context: Context) {
     fun resetAllData() {
         try {
             dataManager.resetData()
+            setInitialBalance(0.0)
+            setCurrency("₡")
         } catch (e: Exception) {
             throw Exception(context.getString(R.string.error_reset_data))
         }
