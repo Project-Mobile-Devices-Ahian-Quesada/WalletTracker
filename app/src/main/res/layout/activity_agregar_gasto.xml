@@ -8,90 +8,116 @@
     tools:context=".AgregarGasto">
 
     <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nuevo Gasto"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
 
     <TableLayout
-        android:layout_width="368dp"
-        android:layout_height="253dp"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="82dp">
+        android:id="@+id/tableLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción:" />
-
+                android:text="Descripción:"
+                android:textStyle="bold" />
             <EditText
                 android:id="@+id/txtdescripcion_addgasto"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="text" />
+                android:inputType="text"
+                android:hint="Ej: Supermercado" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monto:" />
-
+                android:text="Monto:"
+                android:textStyle="bold" />
             <EditText
                 android:id="@+id/txtmonto_addgasto"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="numberDecimal" />
-
+                android:inputType="numberDecimal"
+                android:hint="Ej: 1500.50" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Factura" />
-
+                android:text="Factura:"
+                android:textStyle="bold" />
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
-
+                app:srcCompat="@android:drawable/ic_menu_gallery"
+                app:fabSize="mini"
+                android:layout_marginStart="16dp" />
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                app:fabSize="mini"
+                android:layout_marginStart="8dp" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </TableLayout>
 
+    <ImageView
+        android:id="@+id/imgPreview"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:background="#EEEEEE"
+        android:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tableLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btnGuardarGasto"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/btnaddexpense_agregagasto"
-        tools:layout_editor_absoluteX="127dp"
-        tools:layout_editor_absoluteY="404dp" />
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/imgPreview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        style="@style/Widget.MaterialComponents.Button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
