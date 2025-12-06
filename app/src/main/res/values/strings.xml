@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Billetera Inteligente</string>
+    <string name="app_name">WalletTracker</string>
     <string name="error_add_expense">Error al agregar el gasto.</string>
     <string name="error_get_expenses">Error al obtener los gastos</string>
     <string name="error_get_balance">Error al obtener el saldo</string>
