@@ -1,9 +1,64 @@
 <resources>
     <string name="app_name">WalletTracker</string>
-    <string name="error_add_expense">Error al agregar el gasto.</string>
-    <string name="error_get_expenses">Error al obtener los gastos</string>
-    <string name="error_get_balance">Error al obtener el saldo</string>
-    <string name="error_setting_balance">Error al establecer el saldo inicial</string>
-    <string name="error_delete_expense">Error al eliminar el gasto</string>
-    <string name="error_reset_data">Error al restablecer los datos</string>
+    <string name="edit_expense_title">Editar Gasto</string>
+    <string name="save_changes">Guardar cambios</string>
+    <string name="empty_fields">Completa todos los campos</string>
+    <string name="invalid_amount">Ingresa un monto válido</string>
+    <string name="network_error">Error de red</string>
+
+    <!-- AddIncomeActivity -->
+    <string name="edit_income_title">Editar Ingreso</string>
+    <string name="empty_amount">Ingresa un monto</string>
+
+    <!-- MainActivity -->
+    <string name="refresh_success">Gastos recargados</string>
+
+    <!-- OnboardingActivity -->
+    <string name="onboarding_empty_amount">Ingresa un monto</string>
+    <string name="onboarding_invalid_amount">Monto inválido</string>
+    <string name="onboarding_network_error">Error de red. Intenta de nuevo.</string>
+
+    <!-- SettingsActivity -->
+    <string name="delete_expenses_success">Gastos borrados. Saldo mantenido.</string>
+    <string name="delete_expenses_error">Error al borrar gastos</string>
+
+    <!-- AddEditExpenseActivity & AddIncomeActivity -->
+    <string name="add_expense_title">Añadir Gasto</string>
+    <string name="add_income_title">Añadir Ingreso</string>
+    <string name="description_hint">Descripción del gasto</string>
+    <string name="income_description_hint">Descripción (opcional)</string>
+    <string name="amount_hint">Monto</string>
+    <string name="camera">Cámara</string>
+    <string name="gallery">Galería</string>
+    <string name="save_expense">Guardar Gasto</string>
+    <string name="save_income">Añadir Ingreso</string>
+
+    <string name="income_amount_hint">Monto a sumar</string>
+
+    <!-- MainActivity -->
+    <string name="search_hint">Buscar gastos...</string>
+    <string name="balance_title">Saldo actual</string>
+    <string name="default_balance">₡0.00</string>
+    <string name="fab_add_expense_desc">Añadir gasto</string>
+    <string name="fab_refresh_desc">Recargar lista</string>
+
+    <!-- OnboardingActivity -->
+    <string name="onboarding_message">¿Cuánto dinero tienes ahora?</string>
+    <string name="onboarding_amount_hint">$0.00</string>
+    <string name="continue_button">Continuar</string>
+
+    <!-- SettingsActivity -->
+    <string name="settings_title">Configuración</string>
+    <string name="currency_label">Moneda</string>
+    <string name="currency_crc">₡ Colones costarricenses</string>
+    <string name="currency_usd">$ Dólares estadounidenses</string>
+    <string name="currency_eur">€ Euros</string>
+    <string name="delete_all_expenses">Borrar todos los gastos</string>
+
+    <!-- Item Expense -->
+    <string name="placeholder_description">Descripción</string>
+    <string name="placeholder_date">10 dic 2025</string>
+    <string name="placeholder_amount">-₡1,000</string>
+    <string name="photo_description">Foto del gasto</string>
+    <string name="delete_expense">Borrar gasto</string>
 </resources>
