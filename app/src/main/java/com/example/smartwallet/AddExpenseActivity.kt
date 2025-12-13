@@ -31,7 +31,6 @@ class AddEditExpenseActivity : AppCompatActivity() {
     private var currentBitmap: Bitmap? = null
     private var editingExpense: Expense? = null
 
-    // CÁMARA SIMPLE (TakePicturePreview) → FUNCIONA EN SAMSUNG SIN FILEPROVIDER
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
         bitmap?.let {
             currentBitmap = it
@@ -49,8 +48,6 @@ class AddEditExpenseActivity : AppCompatActivity() {
             binding.ivPhoto.visibility = View.VISIBLE
         }
     }
-
-    // PEDIR PERMISO DE CÁMARA (LO ÚNICO QUE AÑADÍ)
     private val requestCameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         if (granted) {
             cameraLauncher.launch(null)
