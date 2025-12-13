@@ -46,3 +46,5 @@ ExpenseDatabase.kt / ExpenseDao.kt: Definición de la base de datos y métodos d
 Expense.kt: Clase de datos (Modelo) de la transacción (monto, descripción, fecha, ruta de imagen).
 
 Link de Endpoints de API-WALLET: (https://ahianquesadaguadamuz-6940486.postman.co/workspace/Ahian-Quesada's-Workspace~3888e9c9-ad91-44c1-8dd2-dbcd70160762/collection/50495192-9dd6ab35-cc8a-4040-80e8-eb72e5c8469e?action=share&creator=50495192&live=65bfvyrrr9)
+
+Documentación: https://documenter.getpostman.com/view/50495192/2sB3dSRpKw
