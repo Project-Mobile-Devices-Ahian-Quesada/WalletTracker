@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SmartWallet</string>
-    <string name="error_add_expense">Error adding expense.</string>
-    <string name="error_get_expenses">Error getting expenses.</string>
-    <string name="error_get_balance">Error getting balance</string>
-    <string name="error_setting_balance">Error setting balance</string>
-    <string name="error_delete_expense">Error deteting expense</string>
-    <string name="error_reset_data">Error reseting data</string>
-    <string name="btnaddexpense_main">Add Expense</string>
-    <string name="txtbalance_main">Balance</string>
-    <string name="btnaddexpense_agregagasto">Add Expense</string>
-    <string-array name="monedas_array">
-        <item>₡</item>
-        <item>$</item>
-        <item>€</item>
-    </string-array>
+
+    <string name="edit_expense_title">Edit Expense</string>
+    <string name="add_expense_title">Add Expense</string>
+    <string name="save_changes">Save changes</string>
+    <string name="empty_fields">Fill in all fields</string>
+    <string name="invalid_amount">Enter a valid amount</string>
+    <string name="network_error">Network error</string>
+
+    <!-- AddIncomeActivity -->
+    <string name="add_income_title">Add Income</string>
+    <string name="edit_income_title">Edit Income</string>
+    <string name="empty_amount">Enter an amount</string>
+
+    <!-- MainActivity -->
+    <string name="refresh_success">Expenses refreshed</string>
+
+    <!-- OnboardingActivity -->
+    <string name="onboarding_empty_amount">Enter an amount</string>
+    <string name="onboarding_invalid_amount">Invalid amount</string>
+    <string name="onboarding_network_error">Network error. Try again.</string>
+
+    <!-- SettingsActivity -->
+    <string name="delete_expenses_success">Expenses deleted. Balance kept.</string>
+    <string name="delete_expenses_error">Error deleting expenses</string>
+
+    <!-- AddEditExpenseActivity & AddIncomeActivity -->
+    <string name="description_hint">Expense description</string>
+    <string name="income_description_hint">Description (optional)</string>
+    <string name="amount_hint">Amount</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="save_expense">Save Expense</string>
+    <string name="save_income">Add Income</string>
+
+    <string name="income_amount_hint">Amount to add</string>
+
+    <!-- MainActivity -->
+    <string name="search_hint">Search expenses...</string>
+    <string name="balance_title">Current balance</string>
+    <string name="default_balance">₡0.00</string>
+    <string name="fab_add_expense_desc">Add expense</string>
+    <string name="fab_refresh_desc">Refresh list</string>
+
+    <!-- OnboardingActivity -->
+    <string name="onboarding_message">How much money do you have now?</string>
+    <string name="onboarding_amount_hint">$0.00</string>
+    <string name="continue_button">Continue</string>
+
+    <!-- SettingsActivity -->
+    <string name="settings_title">Settings</string>
+    <string name="currency_label">Currency</string>
+    <string name="currency_crc">₡ Costa Rican Colón</string>
+    <string name="currency_usd">$ US Dollars</string>
+    <string name="currency_eur">€ Euros</string>
+    <string name="delete_all_expenses">Delete all expenses</string>
+
+    <!-- Item Expense -->
+    <string name="placeholder_description">Description</string>
+    <string name="placeholder_date">Dec 10, 2025</string>
+    <string name="placeholder_amount">-₡1,000</string>
+    <string name="photo_description">Expense photo</string>
+    <string name="delete_expense">Delete expense</string>
 </resources>

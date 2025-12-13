@@ -5,25 +5,31 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="8dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#1E293B">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:gravity="center_vertical">
 
+            <!-- FOTO DEL GASTO -->
             <ImageView
                 android:id="@+id/ivExpensePhoto"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_menu_gallery"
-                app:tint="#64748B"
-                android:layout_marginEnd="16dp"/>
+                android:background="#334155"
+                android:visibility="gone"
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                android:contentDescription="@string/photo_description"
+                android:layout_marginEnd="16dp" />
 
+            <!-- DESCRIPCIÓN Y FECHA -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,35 +40,36 @@
                     android:id="@+id/tvDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Supermercado"
-                    android:textSize="18sp"
+                    android:text="@string/placeholder_description"
                     android:textColor="#FFFFFF"
-                    android:textStyle="bold"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="29 nov 2025"
-                    android:textSize="14sp"
+                    android:text="@string/placeholder_date"
                     android:textColor="#94A3B8"
-                    android:layout_marginTop="4dp"/>
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
             </LinearLayout>
 
+            <!-- MONTO Y BOTÓN BORRAR -->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="end">
 
                 <TextView
                     android:id="@+id/tvAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-₡5000"
+                    android:text="@string/placeholder_amount"
+                    android:textColor="#EF4444"
                     android:textSize="20sp"
-                    android:textColor="#F87171"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/btnDelete"
@@ -71,7 +78,8 @@
                     android:src="@android:drawable/ic_menu_delete"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     app:tint="#EF4444"
-                    android:layout_marginTop="8dp"/>
+                    android:contentDescription="@string/delete_expense"
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

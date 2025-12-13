@@ -9,23 +9,24 @@
         android:background="#0F172A"
         android:padding="24dp">
 
+        <!-- TÍTULO -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Configuración"
+            android:text="@string/settings_title"
             android:textSize="28sp"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:layout_marginBottom="32dp"/>
+            android:layout_marginBottom="32dp" />
 
-        <!-- Cambiar moneda -->
+        <!-- SECCIÓN MONEDA -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Moneda"
+            android:text="@string/currency_label"
             android:textSize="18sp"
             android:textColor="#94A3B8"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
 
         <RadioGroup
             android:id="@+id/radioGroupCurrency"
@@ -33,41 +34,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RadioButton android:id="@+id/rbCRC" android:text="₡ Colones costarricenses" android:textColor="#FFFFFF"/>
-            <RadioButton android:id="@+id/rbUSD" android:text="$ Dólares estadounidenses" android:textColor="#FFFFFF"/>
-            <RadioButton android:id="@+id/rbEUR" android:text="€ Euros" android:textColor="#FFFFFF"/>
+            <RadioButton
+                android:id="@+id/rbCRC"
+                android:text="@string/currency_crc"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/rbUSD"
+                android:text="@string/currency_usd"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/rbEUR"
+                android:text="@string/currency_eur"
+                android:textColor="#FFFFFF" />
         </RadioGroup>
 
-        <!-- Cambiar saldo actual -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nuevo saldo actual"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="32dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNewBalance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnUpdateBalance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Actualizar saldo"
-            app:backgroundTint="#4ADE80"
-            android:layout_marginTop="16dp"/>
-
-        <!-- Borrar todos los datos -->
+        <!-- BOTÓN BORRAR TODOS LOS GASTOS -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDeleteAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Borrar todos los gastos"
+            android:text="@string/delete_all_expenses"
             app:backgroundTint="#EF4444"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp" />
+
     </LinearLayout>
 </layout>

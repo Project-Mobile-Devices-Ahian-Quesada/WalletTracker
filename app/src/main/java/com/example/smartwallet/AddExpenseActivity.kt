@@ -2,37 +2,60 @@ package com.example.smartwallet
 
 import Controller.WalletController
 import Entity.Expense
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.smartwallet.databinding.ActivityAddExpenseBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
+/**
+ * Activity para añadir o editar un GASTO
+ * - Soporta foto desde cámara o galería
+ * - Permite cambiar entre gasto e ingreso desde la toolbar
+ */
 class AddEditExpenseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddExpenseBinding
     private lateinit var controller: WalletController
+
     private var currentBitmap: Bitmap? = null
     private var editingExpense: Expense? = null
 
-    // Cámara: toma foto pequeña (preview)
+    // CÁMARA SIMPLE (TakePicturePreview) → FUNCIONA EN SAMSUNG SIN FILEPROVIDER
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
         bitmap?.let {
             currentBitmap = it
             binding.ivPhoto.setImageBitmap(it)
-            binding.ivPhoto.visibility = android.view.View.VISIBLE
+            binding.ivPhoto.visibility = View.VISIBLE
         }
     }
 
-    // Galería: elige imagen
+    // GALERÍA SIMPLE
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let {
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+            val bitmap = android.provider.MediaStore.Images.Media.getBitmap(contentResolver, uri)
             currentBitmap = bitmap
             binding.ivPhoto.setImageBitmap(bitmap)
-            binding.ivPhoto.visibility = android.view.View.VISIBLE
+            binding.ivPhoto.visibility = View.VISIBLE
+        }
+    }
+
+    // PEDIR PERMISO DE CÁMARA (LO ÚNICO QUE AÑADÍ)
+    private val requestCameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
+            cameraLauncher.launch(null)
+        } else {
+            Snackbar.make(binding.root, "Se necesita permiso de cámara", Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -44,51 +67,110 @@ class AddEditExpenseActivity : AppCompatActivity() {
         controller = WalletController(this)
         editingExpense = intent.getSerializableExtra("expense") as? Expense
 
-        if (editingExpense != null) {
-            binding.etDescription.setText(editingExpense!!.Description)
-            binding.etAmount.setText(editingExpense!!.Amount.toString())
-            currentBitmap = editingExpense!!.PhotoBitmap
-            if (currentBitmap != null) {
-                binding.ivPhoto.setImageBitmap(currentBitmap)
-                binding.ivPhoto.visibility = android.view.View.VISIBLE
-            }
-            binding.btnSave.text = "Guardar cambios"
-        }
+        setupToolbar()
+        loadExpenseDataIfEditing()
+        setupPhotoButtons()
+        setupSaveButton()
+    }
 
+    /** Configura la toolbar con título y botón de volver */
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = if (editingExpense != null)
+            getString(R.string.edit_expense_title)
+        else
+            getString(R.string.add_expense_title)
+    }
+
+    /** Si estamos editando, carga los datos del gasto */
+    private fun loadExpenseDataIfEditing() {
+        editingExpense?.let { expense ->
+            binding.etDescription.setText(expense.description)
+            binding.etAmount.setText(expense.amount.toString())
+
+            expense.getPhotoBitmap()?.let { bitmap ->
+                currentBitmap = bitmap
+                binding.ivPhoto.setImageBitmap(bitmap)
+                binding.ivPhoto.visibility = View.VISIBLE
+            }
+
+            binding.btnSave.text = getString(R.string.save_changes)
+        }
+    }
+
+    /** Configura los botones de cámara y galería */
+    private fun setupPhotoButtons() {
         binding.btnCamera.setOnClickListener {
-            cameraLauncher.launch(null)
+            // PIDE PERMISO ANTES DE ABRIR CÁMARA
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                cameraLauncher.launch(null)
+            } else {
+                requestCameraPermission.launch(Manifest.permission.CAMERA)
+            }
         }
 
         binding.btnGallery.setOnClickListener {
             galleryLauncher.launch("image/*")
         }
+    }
 
+    /** Valida y guarda el gasto (nuevo o editado) */
+    private fun setupSaveButton() {
         binding.btnSave.setOnClickListener {
-            val desc = binding.etDescription.text.toString().trim()
-            val amountText = binding.etAmount.text.toString()
+            val description = binding.etDescription.text.toString().trim()
+            val amountText = binding.etAmount.text.toString().trim()
 
-            if (desc.isEmpty() || amountText.toDoubleOrNull() == null) {
-                Snackbar.make(binding.root, "Completa los campos", Snackbar.LENGTH_SHORT).show()
+            if (description.isEmpty() || amountText.isEmpty()) {
+                Snackbar.make(binding.root, R.string.empty_fields, Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val amount = amountText.toDouble()
-
-            if (editingExpense != null) {
-                // Editar
-                editingExpense!!.Description = desc
-                editingExpense!!.Amount = amount
-                editingExpense!!.PhotoBitmap = currentBitmap
-            } else {
-                // Nuevo
-                val expense = Expense(
-                    description = desc,
-                    amount = amount,
-                    photoBitmap = currentBitmap
-                )
-                controller.addExpense(expense.Description, expense.Amount, expense.PhotoBitmap)
+            val amount = amountText.toDoubleOrNull()
+            if (amount == null || amount <= 0) {
+                Snackbar.make(binding.root, R.string.invalid_amount, Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
-            finish()
+
+            lifecycleScope.launch {
+                try {
+                    if (editingExpense != null) {
+                        editingExpense!!.apply {
+                            this.description = description
+                            this.amount = amount
+                            setPhotoFromBitmap(currentBitmap)
+                        }
+                        controller.updateExpense(editingExpense!!)
+                    } else {
+                        controller.addExpense(description, amount, currentBitmap)
+                    }
+                    finish()
+                } catch (e: Exception) {
+                    Snackbar.make(binding.root, R.string.network_error, Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    /** Infla el menú con los botones (Gasto) (Ingreso) */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_add_type, menu)
+        return true
+    }
+
+    /** Maneja la navegación entre gasto e ingreso */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> { finish(); true }
+            R.id.action_expense -> true
+            R.id.action_income -> {
+                startActivity(Intent(this, AddIncomeActivity::class.java).apply {
+                    putExtra("expense", editingExpense?.copy(isIncome = true))
+                })
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

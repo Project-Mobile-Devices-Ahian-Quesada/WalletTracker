@@ -1,95 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0F172A">
+        android:background="#0F172A"
+        tools:context=".MainActivity">
 
+        <!-- TOOLBAR -->
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#0F172A">
+            android:background="#1E293B">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="WalletTracker"
-                app:titleTextColor="#FFFFFF" />
+                android:background="#1E293B"
+                app:title="@string/app_name"
+                app:titleTextColor="#FFFFFF"
+                app:menu="@menu/main_menu"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-
+            <!-- BUSCADOR -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                app:startIconDrawable="@android:drawable/ic_search_category_default">
+                android:hint="@string/search_hint"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <AutoCompleteTextView
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Buscar gastos..."
-                    android:inputType="text"
-                    android:imeOptions="actionSearch"/>
+                    android:backgroundTint="#334155"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
+        <!-- CARD DEL SALDO -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="12dp"
-            app:layout_anchor="@id/toolbar"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="#1E293B">
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="24dp"
+            app:cardBackgroundColor="#1E293B"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="20dp"
+            app:layout_anchor="@+id/appBar"
+            app:layout_anchorGravity="bottom|center_horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="180dp"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:padding="24dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Saldo actual"
+                    android:text="@string/balance_title"
+                    android:textColor="#94A3B8"
                     android:textSize="18sp"
-                    android:textColor="#94A3B8"/>
+                    android:fontFamily="sans-serif-medium" />
 
                 <TextView
                     android:id="@+id/tvBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0.00"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/default_balance"
+                    android:textColor="#10B981"
                     android:textSize="48sp"
-                    android:textColor="#4ADE80"
                     android:textStyle="bold"
-                    android:layout_marginTop="8dp"/>
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- LISTA DE MOVIMIENTOS -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvExpenses"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="300dp"
+            android:layout_marginBottom="80dp"
+            android:clipToPadding="false"
+            android:padding="8dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:paddingTop="220dp"
-            android:clipToPadding="false"/>
+            tools:listitem="@layout/item_expense" />
 
+        <!-- FAB AÑADIR GASTO -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_input_add"
-            app:tint="#FFFFFF"
-            app:backgroundTint="#4ADE80"
             android:layout_gravity="bottom|end"
-            android:layout_margin="24dp"/>
+            android:layout_margin="24dp"
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:backgroundTint="#10B981"
+            app:tint="#FFFFFF"
+            android:contentDescription="@string/fab_add_expense_desc" />
+
+        <!-- FAB RECARGAR -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="340dp"
+            android:layout_marginEnd="24dp"
+            app:srcCompat="@android:drawable/stat_notify_sync"
+            app:backgroundTint="#6366F1"
+            app:tint="#FFFFFF"
+            app:fabSize="mini"
+            android:contentDescription="@string/fab_refresh_desc" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
